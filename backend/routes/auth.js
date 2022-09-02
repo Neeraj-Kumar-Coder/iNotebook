@@ -11,13 +11,13 @@ const router = express.Router();
 
 // Handling request to create a new user
 // Validations to be performed on the request received
-let validations = [
+let signupValidations = [
     body("name", "Enter a valid name.").isLength({ min: 3 }),
     body("email", "Enter a valid email.").isEmail(),
     body("password", "Enter a valid password.").isLength({ min: 5 })
 ];
 
-router.post("/createUser", validations, async (req, res) => {
+router.post("/createUser", signupValidations, async (req, res) => {
     // Checking if the request is a valid request or not
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -42,6 +42,48 @@ router.post("/createUser", validations, async (req, res) => {
             password: hashedPassword
         });
 
+        let data = {
+            "user": {
+                "id": user.id
+            }
+        };
+
+        const authToken = jwt.sign(data, JWT_SIGNATURE);
+
+        res.json({ authToken });
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Some error occured");
+    }
+});
+
+
+// Authenticate a user
+let loginValidations = [body("email", "Enter a valid email").isEmail(), body("password", "Password cannot be blank").exists()];
+router.post("/login", loginValidations, async (req, res) => {
+    // Checking if the request is a valid request or not
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
+    try {
+        const { email, password } = req.body;
+        let user = await User.findOne({ email });
+
+        // User doesn't exists
+        if (!user) {
+            return res.status(400).json({ "error": "Please login using valid credentials" });
+        }
+
+        const correctPassword = await bcrypt.compare(password, user.password);
+
+        // Password is incorrect
+        if (!correctPassword) {
+            return res.status(400).json({ "error": "Please login using valid credentials" });
+        }
+
+        // If entered data is correct then proceed giving JWT token
         let data = {
             "user": {
                 "id": user.id
