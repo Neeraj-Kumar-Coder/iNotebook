@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
-const mongoURI = "mongodb://localhost:27017/iNotebook";
+const database = "iNotebook";
+const mongoURI = `mongodb://localhost:27017/${database}`;
 
 const connectToMongo = () => {
     mongoose.connect(mongoURI, () => {
-        console.log("Connection is succesfull");
+        console.log(`Connection successfull to ${database} database!`);
     });
 }
 

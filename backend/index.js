@@ -1,17 +1,24 @@
+// Importing required modules
 const express = require("express");
 const connectToMongo = require("./db");
 
+// Connecting to the database
 connectToMongo();
 
 const app = express();
 const port = 3000;
 
+// Middleware to work with JSON
 app.use(express.json());
 
 // Available Routes
+// Authentication endpoint
 app.use("/api/auth", require("./routes/auth"));
+
+// Endpoint to work with notes
 app.use("/api/notes", require("./routes/notes"));
 
+// Start listening to the port
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
 });
