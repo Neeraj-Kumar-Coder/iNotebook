@@ -9,8 +9,7 @@ const JWT_SIGNATURE = "@sign@tureto^%#112";
 
 const router = express.Router();
 
-// Handling request to create a new user
-// Validations to be performed on the request received
+// Create a new user
 let signupValidations = [
     body("name", "Enter a valid name.").isLength({ min: 3 }),
     body("email", "Enter a valid email.").isEmail(),
