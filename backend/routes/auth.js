@@ -4,12 +4,13 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { body, validationResult } = require("express-validator");
 const User = require("../models/User");
+const getuser = require("../middleware/getuser");
 
 const JWT_SIGNATURE = "@sign@tureto^%#112";
 
 const router = express.Router();
 
-// Create a new user
+// ROUTE 1: Create a new user
 let signupValidations = [
     body("name", "Enter a valid name.").isLength({ min: 3 }),
     body("email", "Enter a valid email.").isEmail(),
@@ -57,7 +58,7 @@ router.post("/createUser", signupValidations, async (req, res) => {
 });
 
 
-// Authenticate a user
+// ROUTE 2: Authenticate a user
 let loginValidations = [body("email", "Enter a valid email").isEmail(), body("password", "Password cannot be blank").exists()];
 router.post("/login", loginValidations, async (req, res) => {
     // Checking if the request is a valid request or not
@@ -92,6 +93,18 @@ router.post("/login", loginValidations, async (req, res) => {
         const authToken = jwt.sign(data, JWT_SIGNATURE);
 
         res.json({ authToken });
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Some error occured");
+    }
+});
+
+// ROUTE 3: Get user details
+router.post("/getuser", getuser, async (req, res) => {
+    try {
+        let userId = req.user.id;
+        const user = await User.findById(userId).select("-password");
+        res.send(user);
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Some error occured");
