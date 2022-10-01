@@ -2,7 +2,6 @@ const express = require("express");
 const getuser = require("../middleware/getuser");
 const Notes = require("../models/Notes");
 const { body, validationResult } = require("express-validator");
-const { findById } = require("../models/Notes");
 const router = express.Router();
 
 // Route 1: Get all the notes of the current user

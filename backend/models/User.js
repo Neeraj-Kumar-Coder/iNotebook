@@ -10,7 +10,4 @@ const userSchema = new Schema({
     date: { type: Date, default: Date.now }
 });
 
-// modelling the schema
-const User = mongoose.model("user", userSchema);
-
-module.exports = User;
+module.exports = mongoose.model("user", userSchema);
