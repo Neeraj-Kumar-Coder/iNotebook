@@ -6,7 +6,7 @@ const connectToMongo = require("./db");
 connectToMongo();
 
 const app = express();
-const port = 3000;
+const port = 4000;
 
 // Middleware to work with JSON
 app.use(express.json());
