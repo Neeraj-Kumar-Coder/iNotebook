@@ -1,9 +1,23 @@
+import Navbar from './components/Navbar';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
 import './App.css';
+import Home from "./components/Home";
+import About from "./components/About";
 
 function App() {
   return (
     <>
-      <h1>Welcome to iNotebook</h1>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route exact path="/" element={<Home />}></Route>
+          <Route exact path="/about" element={<About />}></Route>
+        </Routes>
+      </Router>
     </>
   );
 }
