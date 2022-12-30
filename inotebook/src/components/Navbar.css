@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -6,7 +8,23 @@
 }
 
 .bg-dark {
-    background-color: #252324;
+    background-color: #161616;
+}
+
+#total-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 5rem;
+}
+
+#nav-title {
+    color: red;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    margin: 0 0.5rem;
 }
 
 #navbar {
@@ -16,13 +34,19 @@
     align-items: center;
 }
 
+#navbar>li {
+    margin: 0 0.5rem;
+}
+
 .nav-item {
     display: inline-block;
     position: relative;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: 1.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 3px 7px;
     margin: 0.5rem;
-    color: #D3D3D3;
+    color: #a0a0a0;
     transition: all 300ms linear;
 }
 
@@ -37,9 +61,9 @@
     left: 0;
     right: 0;
     width: 0%;
-    height: 0.1rem;
+    height: 2px;
     margin: auto;
-    background-color: white;
+    background-color: #ff3c78;
     transition: all 300ms linear;
 }
 
@@ -49,6 +73,6 @@
 }
 
 .active {
-    color: white;
+    color: #ff3c78;
     pointer-events: none;
 }
