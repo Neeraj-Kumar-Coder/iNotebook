@@ -6,7 +6,7 @@ const Navbar = () => {
     let location = useLocation();
     return (
         <nav id="total-nav" className="bg-dark">
-            <Link id="nav-title" to="/"> iNotebook</Link>
+            <Link id="nav-title" to="/"> iNotebook </Link>
             <ul id="navbar" className="bg-dark">
                 <li> <Link className={`nav-item ${location.pathname === "/" ? "active" : ""}`} to="/">Home</Link> </li>
                 <li> <Link className={`nav-item ${location.pathname === "/services" ? "active" : ""}`} to="/services">Services</Link> </li>
