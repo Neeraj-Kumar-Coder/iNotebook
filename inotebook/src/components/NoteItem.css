@@ -84,6 +84,7 @@
 }
 
 .note-overlay-item-wrapper {
+    position: relative;
     cursor: pointer;
     transition: all 150ms linear;
 }
@@ -101,6 +102,19 @@
 }
 
 .note-overlay-item-desc {
+    position: absolute;
+    top: 70%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    margin: auto;
     font-size: 0.8rem;
     text-align: center;
+    opacity: 0;
+    transition: all 150ms linear;
+}
+
+.note-overlay-item-wrapper:hover>.note-overlay-item-desc {
+    top: 100%;
+    opacity: 1;
 }
