@@ -13,6 +13,9 @@
 
 #total-nav {
     display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 999;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;

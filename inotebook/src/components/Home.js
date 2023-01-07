@@ -1,15 +1,14 @@
 import React from 'react'
+import AddNote from './AddNote'
 import './Home.css'
 import Notes from './Notes'
 
 const Home = () => {
     return (
-        <>
-            <div className="container">
-                <h1 id="heading">Take your notes here</h1>
-                <Notes />
-            </div>
-        </>
+        <div className="container">
+            <AddNote />
+            <Notes />
+        </div>
     )
 }
 

@@ -10,7 +10,8 @@
     height: 17rem;
     width: 17rem;
     padding: 16px;
-    margin: 0.5rem 32px;
+    /*marign on x is wrt navbar alignment of text*/
+    margin: 0.5rem 0.5rem;
     text-align: center;
     overflow: hidden;
     transition: all 150ms linear;
@@ -18,7 +19,6 @@
 
 .note-item:hover {
     transform: scale(1.03);
-    box-shadow: 0px 0px 7px 3px #d0cfcf;
 }
 
 .note-item::-webkit-scrollbar {
@@ -67,7 +67,7 @@
 
 .note-overlay:hover {
     opacity: 1;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(3px);
 }
 
