@@ -1,6 +1,7 @@
 // Importing required modules
 const express = require("express");
 const connectToMongo = require("./db");
+const cors = require("cors");
 
 // Connecting to the database
 connectToMongo();
@@ -10,6 +11,9 @@ const port = 4000;
 
 // Middleware to work with JSON
 app.use(express.json());
+
+// Middleware for cors
+app.use(cors());
 
 // Available Routes
 // Authentication endpoint

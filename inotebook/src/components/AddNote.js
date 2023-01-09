@@ -5,7 +5,7 @@ import NoteContext from '../context/notes/noteContext';
 const AddNote = () => {
     const [note, setNote] = useState({ title: "", description: "", tag: "" });
     const context = useContext(NoteContext);
-    const { addNote, updateNode, deleteNote } = context;
+    const { addNote } = context;
 
     const onChange = (event) => {
         setNote({ ...note, [event.target.name]: event.target.value });

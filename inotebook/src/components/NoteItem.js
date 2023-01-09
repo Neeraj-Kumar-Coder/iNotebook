@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import "./NoteItem.css"
+import NoteContext from '../context/notes/noteContext';
 
 const NoteItem = (props) => {
     const { note, color } = props;
+    const context = useContext(NoteContext);
+
+    const { deleteNote } = context;
     return (
-        <div className="note-item" style={{ backgroundColor: color }}>
+        <div key={note._id} className="note-item" style={{ backgroundColor: color }}>
             <p className="watermark">iNotebook</p>
             <h2 className="title">{note.title}</h2>
             <h6 className="date">(Last Edited On: {String(new Date(note.date).toLocaleString())})</h6>
@@ -18,7 +22,7 @@ const NoteItem = (props) => {
                     <img className="note-overlay-item-img" src="./icons/edit-icon.png" alt="edit-icon"></img>
                     <span className="note-overlay-item-desc">Edit</span>
                 </div>
-                <div className="note-overlay-item-wrapper">
+                <div className="note-overlay-item-wrapper" onClick={() => { deleteNote(note._id) }}>
                     <img className="note-overlay-item-img" src="./icons/delete-icon.png" alt="delete-icon"></img>
                     <span className="note-overlay-item-desc">Delete</span>
                 </div>
