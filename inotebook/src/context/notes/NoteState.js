@@ -16,15 +16,24 @@ const NoteState = (props) => {
             }
         });
         const json = await response.json();
-        console.log(json);
         setNotes(json);
     }
 
     // Adding a note
     const addNote = async (note) => {
-        console.log("New Note Added!");
-        console.log(note);
+        // Joining the space separated tags with ',' before saving to the database
+        note.tag = JSON.stringify(note.tag.split(" ").join(", "));
+
         // Logic to save a note to the backend
+        const response = await fetch(`${host}/api/notes/addNote`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMxMWUwZTA2NTE5N2MwZjRiNzY1OTRjIn0sImlhdCI6MTY2MjI5MDk4NH0.6PiI7N69uta42Po6K1EBOtQ4yR-D5HbDqM_bCi9NJOc"
+            },
+            body: JSON.stringify(note)
+        });
+        const json = await response.json();
 
         // Logic to show that note has been added successfully in the frontend (client side)
         setNotes(notes.concat(note));
@@ -37,7 +46,6 @@ const NoteState = (props) => {
 
     // Deleting a note
     const deleteNote = async (noteIdToBeDeleted) => {
-        console.log(`Deleted Note with id ${noteIdToBeDeleted}`);
         // Logic to delete the note in the backend
         const response = await fetch(`${host}/api/notes/deleteNote/${noteIdToBeDeleted}`, {
             method: "DELETE",
@@ -47,8 +55,7 @@ const NoteState = (props) => {
             }
         });
 
-        const json = response.json();
-        console.log(json);
+        const json = await response.json();
 
         // Logic to show that note has been deleted in the frontend (client side)
         setNotes(notes.filter((note) => { return note._id !== noteIdToBeDeleted }));

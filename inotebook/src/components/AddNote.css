@@ -3,6 +3,7 @@
 .add-note {
     /* with alignment to navbar*/
     padding: 0 0.5rem;
+    box-sizing: border-box;
 }
 
 #add-note-title {
@@ -17,11 +18,16 @@
 
 #note-form * {
     font-family: 'Poppins', sans-serif;
-    width: 100%;
 }
 
 .note-form-item-wrapper {
     margin: 1rem 0;
+    width: 100%;
+}
+
+.note-form-item-wrapper>* {
+    display: block;
+    width: 100%;
 }
 
 .note-form-item-wrapper>label {
@@ -42,9 +48,11 @@
     background: none;
     color: black;
     border: 3px solid black;
+    backdrop-filter: blur(3px);
 }
 
 .btn {
+    display: inline !important;
     position: relative;
     margin: 0 0.5rem;
     height: 3rem;
