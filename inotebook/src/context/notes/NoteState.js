@@ -36,7 +36,7 @@ const NoteState = (props) => {
         const json = await response.json();
 
         // Logic to show that note has been added successfully in the frontend (client side)
-        setNotes(notes.concat(note));
+        fetchAllNotes();
     }
 
     // Updating a note
